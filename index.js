@@ -52,7 +52,7 @@ allClear.addEventListener("click", () => {
   Current.innerHTML = "0";
   prevOperand.innerHTML = "";
   isOperator = false;
-  isOperator = false;
+  isDotOperation = false;
 });
 
 del.addEventListener("click", () => {
