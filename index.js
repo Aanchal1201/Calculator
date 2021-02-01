@@ -60,9 +60,10 @@ allClear.addEventListener("click", () => {
 del.addEventListener("click", () => {
   Current.innerHTML = Current.innerHTML.slice(0, -1);
   isDataOperation = false;
-  isDataOperation = false;
+  isDotOperation = true;
   if (basicOperator.includes(Current.innerHTML.slice(-1))) {
     isDataOperation = true;
+    isDotOperation = false;
   }
 });
 
@@ -72,7 +73,7 @@ equal.addEventListener("click", () => {
     Current.innerHTML = Current.innerHTML.slice(0, -1);
   }
   isDataOperation = false;
-  isDataOperation = false;
+  isDotOperation = false;
   Current.innerHTML = String(eval(Current.innerHTML));
   if (Current.innerHTML.split(".")[1] != undefined) {
     if (Current.innerHTML.split(".")[1].length > 2) {
