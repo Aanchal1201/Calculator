@@ -1,4 +1,5 @@
 let isDataOperation = false;
+let isDotOperation = false;
 const basicOperator = "+-*/";
 
 const Current = document.querySelector(".current-operand");
@@ -20,6 +21,7 @@ operators.forEach((operator) => {
       Current.innerHTML += operator.innerHTML;
     }
     isDataOperation = true;
+    isDotOperation = false;
   });
 });
 
@@ -35,8 +37,8 @@ numbers.forEach((number) => {
 });
 
 dot.addEventListener("click", function () {
-    
-  if (Current.innerHTML.includes(dot.innerHTML)) {
+
+  if (isDotOperation) {
     return;
   }
   if (Current.innerHTML == "") {
@@ -45,16 +47,19 @@ dot.addEventListener("click", function () {
   else{
     Current.innerHTML += dot.innerHTML;
   }
+  isDotOperation = true;
 });
 
 allClear.addEventListener("click", () => {
   Current.innerHTML = "0";
   prevOperand.innerHTML = "";
   isDataOperation = false;
+  isDataOperation = false;
 });
 
 del.addEventListener("click", () => {
   Current.innerHTML = Current.innerHTML.slice(0, -1);
+  isDataOperation = false;
   isDataOperation = false;
   if (basicOperator.includes(Current.innerHTML.slice(-1))) {
     isDataOperation = true;
@@ -66,6 +71,7 @@ equal.addEventListener("click", () => {
   if (basicOperator.includes(Current.innerHTML.slice(-1))) {
     Current.innerHTML = Current.innerHTML.slice(0, -1);
   }
+  isDataOperation = false;
   isDataOperation = false;
   Current.innerHTML = String(eval(Current.innerHTML));
   if (Current.innerHTML.split(".")[1] != undefined) {
