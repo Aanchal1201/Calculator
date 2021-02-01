@@ -37,14 +37,12 @@ numbers.forEach((number) => {
 });
 
 dot.addEventListener("click", function () {
-
   if (isDotOperation) {
     return;
   }
   if (Current.innerHTML == "") {
     Current.innerHTML = "0" + dot.innerHTML;
-  }
-  else{
+  } else {
     Current.innerHTML += dot.innerHTML;
   }
   isDotOperation = true;
@@ -73,11 +71,14 @@ equal.addEventListener("click", () => {
     Current.innerHTML = Current.innerHTML.slice(0, -1);
   }
   isOperator = false;
-  isDotOperation = false;
   Current.innerHTML = String(eval(Current.innerHTML));
   if (Current.innerHTML.split(".")[1] != undefined) {
     if (Current.innerHTML.split(".")[1].length > 2) {
       Current.innerHTML = Number(Current.innerHTML).toFixed(3);
     }
+  }
+  isDotOperation = false;
+  if (Current.innerHTML.includes(dot.innerHTML)) {
+    isDotOperation = true;
   }
 });
