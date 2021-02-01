@@ -1,4 +1,4 @@
-let isDataOperation = false;
+let isOperator = false;
 let isDotOperation = false;
 const basicOperator = "+-*/";
 
@@ -17,10 +17,10 @@ operators.forEach((operator) => {
     if (basicOperator.includes(Current.innerHTML.slice(-1))) {
       Current.innerHTML = Current.innerHTML.slice(0, -1) + operator.innerHTML;
     }
-    if (!isDataOperation) {
+    if (!isOperator) {
       Current.innerHTML += operator.innerHTML;
     }
-    isDataOperation = true;
+    isOperator = true;
     isDotOperation = false;
   });
 });
@@ -32,7 +32,7 @@ numbers.forEach((number) => {
     } else {
       Current.innerHTML += number.innerHTML;
     }
-    isDataOperation = false;
+    isOperator = false;
   });
 });
 
@@ -53,16 +53,16 @@ dot.addEventListener("click", function () {
 allClear.addEventListener("click", () => {
   Current.innerHTML = "0";
   prevOperand.innerHTML = "";
-  isDataOperation = false;
-  isDataOperation = false;
+  isOperator = false;
+  isOperator = false;
 });
 
 del.addEventListener("click", () => {
   Current.innerHTML = Current.innerHTML.slice(0, -1);
-  isDataOperation = false;
+  isOperator = false;
   isDotOperation = true;
   if (basicOperator.includes(Current.innerHTML.slice(-1))) {
-    isDataOperation = true;
+    isOperator = true;
     isDotOperation = false;
   }
 });
@@ -72,7 +72,7 @@ equal.addEventListener("click", () => {
   if (basicOperator.includes(Current.innerHTML.slice(-1))) {
     Current.innerHTML = Current.innerHTML.slice(0, -1);
   }
-  isDataOperation = false;
+  isOperator = false;
   isDotOperation = false;
   Current.innerHTML = String(eval(Current.innerHTML));
   if (Current.innerHTML.split(".")[1] != undefined) {
